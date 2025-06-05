@@ -4,11 +4,14 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
   images: {
     unoptimized: true,
   },
+  experimental: {
+    optimizePackageImports: ["react-icons"],
+  },
 }
 
-export default nextConfig
+module.exports = nextConfig

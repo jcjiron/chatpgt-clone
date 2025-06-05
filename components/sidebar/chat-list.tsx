@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { FaUserCircle, FaTrash } from "react-icons/fa"
 import type { Chat } from "@/types/chat"
 import { useChatContext } from "@/context/chat-context"

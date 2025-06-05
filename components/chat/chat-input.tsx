@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState, useRef } from "react"
 import { FaPaperPlane, FaMicrophone, FaStop } from "react-icons/fa"
 import { useChatOperations } from "@/hooks/use-chat-operations"
@@ -28,23 +27,19 @@ export function ChatInput() {
     }
   }
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault()
-      handleSubmit(e)
+      handleSubmit(e as any)
     }
   }
 
   const toggleRecording = () => {
     if (isRecording) {
-      // Stop recording
       setIsRecording(false)
-      // Simulate voice message
       sendMessage("Voice message recorded", "voice")
     } else {
-      // Start recording
       setIsRecording(true)
-      // In a real implementation, you would start actual voice recording here
     }
   }
 
@@ -67,7 +62,7 @@ export function ChatInput() {
               setMessage(e.target.value)
               adjustTextareaHeight()
             }}
-            onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyDown}
             placeholder="Type your message..."
             className="w-full p-3 pr-12 border border-slate-300 rounded-lg 
                        focus:outline-none focus:ring-2 focus:ring-blue-500 

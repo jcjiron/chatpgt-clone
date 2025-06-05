@@ -4,10 +4,10 @@ import defaultConfig from "shadcn/ui/tailwind.config"
 const config: Config = {
   ...defaultConfig,
   content: [
-    ...defaultConfig.content,
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./**/*.{js,ts,jsx,tsx,mdx}",
     "*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
@@ -28,6 +28,8 @@ const config: Config = {
           700: "#1d4ed8",
           800: "#1e40af",
           900: "#1e3a8a",
+          DEFAULT: "#3b82f6",
+          foreground: "hsl(210 40% 98%)",
         },
         secondary: {
           ...defaultConfig.theme.extend.colors.secondary,
@@ -41,6 +43,8 @@ const config: Config = {
           700: "#334155",
           800: "#1e293b",
           900: "#0f172a",
+          DEFAULT: "#f1f5f9",
+          foreground: "hsl(222.2 84% 4.9%)",
         },
         tertiary: {
           50: "#fefce8",
@@ -58,6 +62,7 @@ const config: Config = {
       fontFamily: {
         heading: ["Inter", "system-ui", "sans-serif"],
         body: ["Inter", "system-ui", "sans-serif"],
+        sans: ["Inter", "system-ui", "sans-serif"],
       },
       fontSize: {
         "heading-xl": ["2.5rem", { lineHeight: "3rem", fontWeight: "700" }],
@@ -70,9 +75,24 @@ const config: Config = {
         "body-xs": ["0.75rem", { lineHeight: "1rem", fontWeight: "400" }],
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        ...defaultConfig.theme.extend.borderRadius,
+        lg: "0.5rem",
+        md: "calc(0.5rem - 2px)",
+        sm: "calc(0.5rem - 4px)",
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
   },
