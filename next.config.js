@@ -12,6 +12,7 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ["react-icons"],
   },
+  output: "standalone",
 }
 
 module.exports = nextConfig
