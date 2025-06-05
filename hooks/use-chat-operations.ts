@@ -1,0 +1,152 @@
+"use client"
+
+import { useCallback } from "react"
+import { useChatContext } from "@/context/chat-context"
+import type { DatabaseDataSource } from "@/interfaces/database-datasource"
+import { InMemoryDataSource } from "@/services/in-memory-datasource"
+
+// Singleton instance for data persistence
+const dataSource: DatabaseDataSource = new InMemoryDataSource()
+
+export function useChatOperations() {
+  const { state, dispatch } = useChatContext()
+
+  const loadChats = useCallback(async () => {
+    try {
+      dispatch({ type: "SET_LOADING", payload: true })
+      const chats = await dataSource.getAllChats()
+      dispatch({ type: "SET_CHATS", payload: chats })
+    } catch (error) {
+      console.error("Error loading chats:", error)
+    } finally {
+      dispatch({ type: "SET_LOADING", payload: false })
+    }
+  }, [dispatch])
+
+  const loadProjects = useCallback(async () => {
+    try {
+      const projects = await dataSource.getAllProjects()
+      dispatch({ type: "SET_PROJECTS", payload: projects })
+    } catch (error) {
+      console.error("Error loading projects:", error)
+    }
+  }, [dispatch])
+
+  const createNewChat = useCallback(
+    async (name: string, projectId?: string) => {
+      try {
+        const newChat = await dataSource.createChat(name, projectId)
+        dispatch({ type: "ADD_CHAT", payload: newChat })
+        dispatch({ type: "SET_ACTIVE_CHAT", payload: newChat })
+        return newChat
+      } catch (error) {
+        console.error("Error creating chat:", error)
+        throw error
+      }
+    },
+    [dispatch],
+  )
+
+  const createNewProject = useCallback(
+    async (name: string, description?: string) => {
+      try {
+        const newProject = await dataSource.createProject(name, description)
+        dispatch({ type: "ADD_PROJECT", payload: newProject })
+        return newProject
+      } catch (error) {
+        console.error("Error creating project:", error)
+        throw error
+      }
+    },
+    [dispatch],
+  )
+
+  const sendMessage = useCallback(
+    async (content: string, type: "text" | "voice" = "text") => {
+      if (!state.activeChat) return
+
+      try {
+        dispatch({ type: "SET_LOADING", payload: true })
+
+        // Add user message
+        const userMessage = await dataSource.addMessage(state.activeChat.id, {
+          content,
+          type,
+          sender: "user",
+          timestamp: new Date(),
+        })
+
+        // Update chat with new message
+        const updatedChat = await dataSource.getChat(state.activeChat.id)
+        if (updatedChat) {
+          dispatch({ type: "UPDATE_CHAT", payload: updatedChat })
+        }
+
+        // Simulate AI response with typing animation
+        setTimeout(async () => {
+          const responses = [
+            "Entiendo tu consulta. Déjame ayudarte con eso.",
+            "Esa es una excelente pregunta. Te explico:",
+            "Basándome en la información que me proporcionas, puedo sugerirte lo siguiente:",
+            "Perfecto, vamos a resolver esto paso a paso.",
+            "Gracias por la información. Mi recomendación es:",
+          ]
+
+          const randomResponse = responses[Math.floor(Math.random() * responses.length)]
+
+          await dataSource.addMessage(state.activeChat!.id, {
+            content: randomResponse,
+            type: "text",
+            sender: "assistant",
+            timestamp: new Date(),
+          })
+
+          const finalUpdatedChat = await dataSource.getChat(state.activeChat!.id)
+          if (finalUpdatedChat) {
+            dispatch({ type: "UPDATE_CHAT", payload: finalUpdatedChat })
+          }
+
+          dispatch({ type: "SET_LOADING", payload: false })
+        }, 2000)
+      } catch (error) {
+        console.error("Error sending message:", error)
+        dispatch({ type: "SET_LOADING", payload: false })
+      }
+    },
+    [state.activeChat, dispatch],
+  )
+
+  const selectChat = useCallback(
+    async (chatId: string) => {
+      try {
+        const chat = await dataSource.getChat(chatId)
+        dispatch({ type: "SET_ACTIVE_CHAT", payload: chat })
+      } catch (error) {
+        console.error("Error selecting chat:", error)
+      }
+    },
+    [dispatch],
+  )
+
+  const deleteChat = useCallback(
+    async (chatId: string) => {
+      try {
+        await dataSource.deleteChat(chatId)
+        dispatch({ type: "DELETE_CHAT", payload: chatId })
+      } catch (error) {
+        console.error("Error deleting chat:", error)
+      }
+    },
+    [dispatch],
+  )
+
+  return {
+    loadChats,
+    loadProjects,
+    createNewChat,
+    createNewProject,
+    sendMessage,
+    selectChat,
+    deleteChat,
+  }
+}
