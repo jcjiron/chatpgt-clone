@@ -27,7 +27,7 @@ export function ProjectList({ projects }: ProjectListProps) {
   }
 
   const handleCreateProject = async () => {
-    const name = prompt("Nombre del proyecto:")
+    const name = prompt("Project name:")
     if (name) {
       try {
         await createNewProject(name)
@@ -38,7 +38,7 @@ export function ProjectList({ projects }: ProjectListProps) {
   }
 
   const handleCreateChatInProject = async (projectId: string) => {
-    const name = prompt("Nombre del chat:")
+    const name = prompt("Chat name:")
     if (name) {
       try {
         await createNewChat(name, projectId)
@@ -57,7 +57,7 @@ export function ProjectList({ projects }: ProjectListProps) {
                    flex items-center justify-center space-x-2"
       >
         <FaPlus className="w-4 h-4 text-slate-500" />
-        <span className="text-sm text-slate-600">Nuevo Proyecto</span>
+        <span className="text-sm text-slate-600">New Project</span>
       </button>
 
       {projects.map((project) => {

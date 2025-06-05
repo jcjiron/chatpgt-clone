@@ -10,7 +10,7 @@ export function SidebarHeader() {
 
   const handleNewChat = async () => {
     try {
-      await createNewChat(`Nuevo Chat ${Date.now()}`)
+      await createNewChat(`New Chat ${Date.now()}`)
     } catch (error) {
       console.error("Error creating new chat:", error)
     }
@@ -33,7 +33,7 @@ export function SidebarHeader() {
 
         {!state.isSidebarCollapsed && (
           <>
-            <h1 className="font-heading text-xl font-semibold text-slate-900">Chat Empresarial</h1>
+            <h1 className="font-heading text-xl font-semibold text-slate-900">Enterprise Chat</h1>
             <button
               onClick={handleNewChat}
               className="p-2 hover:bg-blue-100 rounded-lg transition-colors"

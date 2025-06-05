@@ -10,7 +10,7 @@ export function SidebarFooter() {
 
   const handleTemporaryChat = async () => {
     try {
-      await createNewChat(`Chat Temporal ${Date.now()}`)
+      await createNewChat(`Temporary Chat ${Date.now()}`)
     } catch (error) {
       console.error("Error creating temporary chat:", error)
     }
@@ -51,7 +51,7 @@ export function SidebarFooter() {
                    transition-colors flex items-center space-x-3"
       >
         <FaClock className="w-4 h-4 text-yellow-600" />
-        <span className="text-sm text-yellow-700">Chat Temporal</span>
+        <span className="text-sm text-yellow-700">Temporary Chat</span>
       </button>
 
       <button
@@ -59,7 +59,7 @@ export function SidebarFooter() {
         className="w-full p-3 bg-blue-50 hover:bg-blue-100 rounded-lg 
                    transition-colors flex items-center justify-between"
       >
-        <span className="text-sm text-blue-700">Ver Planes</span>
+        <span className="text-sm text-blue-700">View Plans</span>
         <FaExternalLinkAlt className="w-4 h-4 text-blue-600" />
       </button>
     </div>

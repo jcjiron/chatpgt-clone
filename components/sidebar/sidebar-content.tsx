@@ -33,12 +33,12 @@ export function SidebarContent() {
     <div className="flex-1 overflow-y-auto">
       <div className="p-4 space-y-6">
         <div>
-          <h2 className="font-heading text-lg font-semibold text-slate-700 mb-3">Conversaciones</h2>
+          <h2 className="font-heading text-lg font-semibold text-slate-700 mb-3">Conversations</h2>
           <ChatList chats={state.chats.filter((chat) => !chat.projectId)} />
         </div>
 
         <div>
-          <h2 className="font-heading text-lg font-semibold text-slate-700 mb-3">Proyectos</h2>
+          <h2 className="font-heading text-lg font-semibold text-slate-700 mb-3">Projects</h2>
           <ProjectList projects={state.projects} />
         </div>
       </div>

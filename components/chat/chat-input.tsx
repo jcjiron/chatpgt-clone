@@ -40,7 +40,7 @@ export function ChatInput() {
       // Stop recording
       setIsRecording(false)
       // Simulate voice message
-      sendMessage("Mensaje de voz grabado", "voice")
+      sendMessage("Voice message recorded", "voice")
     } else {
       // Start recording
       setIsRecording(true)
@@ -68,7 +68,7 @@ export function ChatInput() {
               adjustTextareaHeight()
             }}
             onKeyPress={handleKeyPress}
-            placeholder="Escribe tu mensaje..."
+            placeholder="Type your message..."
             className="w-full p-3 pr-12 border border-slate-300 rounded-lg 
                        focus:outline-none focus:ring-2 focus:ring-blue-500 
                        focus:border-transparent resize-none min-h-[48px] max-h-[120px]
@@ -110,7 +110,7 @@ export function ChatInput() {
       {isRecording && (
         <div className="mt-3 flex items-center justify-center space-x-2 text-red-600">
           <div className="w-2 h-2 bg-red-600 rounded-full animate-pulse" />
-          <span className="text-sm">Grabando...</span>
+          <span className="text-sm">Recording...</span>
         </div>
       )}
     </div>

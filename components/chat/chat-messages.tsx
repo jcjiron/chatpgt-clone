@@ -32,7 +32,7 @@ export function ChatMessages() {
           <div className="bg-slate-100 rounded-lg p-4 max-w-xs lg:max-w-md">
             <div className="flex items-center space-x-2">
               <FaSpinner className="w-4 h-4 text-slate-600 animate-spin" />
-              <span className="text-sm text-slate-600">Escribiendo...</span>
+              <span className="text-sm text-slate-600">Typing...</span>
             </div>
           </div>
         </div>
@@ -67,7 +67,7 @@ function MessageBubble({ message }: MessageBubbleProps) {
         {message.type === "voice" ? (
           <div className="flex items-center space-x-2">
             <div className="w-4 h-4 bg-current rounded-full opacity-60" />
-            <span className="text-sm">Mensaje de voz</span>
+            <span className="text-sm">Voice message</span>
           </div>
         ) : (
           <div className="text-base">

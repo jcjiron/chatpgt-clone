@@ -18,9 +18,9 @@ type ChatAction =
   | { type: "DELETE_CHAT"; payload: string }
 
 const defaultAgents: Agent[] = [
-  { id: "1", name: "GPT-4", model: "gpt-4", description: "Modelo avanzado para tareas complejas" },
-  { id: "2", name: "GPT-3.5", model: "gpt-3.5-turbo", description: "Modelo rápido para conversaciones" },
-  { id: "3", name: "Claude", model: "claude-3", description: "Asistente especializado en análisis" },
+  { id: "1", name: "GPT-4", model: "gpt-4", description: "Advanced model for complex tasks" },
+  { id: "2", name: "GPT-3.5", model: "gpt-3.5-turbo", description: "Fast model for conversations" },
+  { id: "3", name: "Claude", model: "claude-3", description: "Assistant specialized in analysis" },
 ]
 
 const initialState: ChatState = {

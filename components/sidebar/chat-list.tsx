@@ -21,13 +21,13 @@ export function ChatList({ chats }: ChatListProps) {
 
   const handleDeleteChat = async (e: React.MouseEvent, chatId: string) => {
     e.stopPropagation()
-    if (confirm("¿Estás seguro de que quieres eliminar este chat?")) {
+    if (confirm("Are you sure you want to delete this chat?")) {
       await deleteChat(chatId)
     }
   }
 
   if (chats.length === 0) {
-    return <div className="text-sm text-slate-500 text-center py-4">No hay conversaciones</div>
+    return <div className="text-sm text-slate-500 text-center py-4">No conversations</div>
   }
 
   return (

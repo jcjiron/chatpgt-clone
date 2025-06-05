@@ -85,11 +85,11 @@ export function useChatOperations() {
         // Simulate AI response with typing animation
         setTimeout(async () => {
           const responses = [
-            "Entiendo tu consulta. Déjame ayudarte con eso.",
-            "Esa es una excelente pregunta. Te explico:",
-            "Basándome en la información que me proporcionas, puedo sugerirte lo siguiente:",
-            "Perfecto, vamos a resolver esto paso a paso.",
-            "Gracias por la información. Mi recomendación es:",
+            "I understand your question. Let me help you with that.",
+            "That's an excellent question. Let me explain:",
+            "Based on the information you provided, I can suggest the following:",
+            "Perfect, let's solve this step by step.",
+            "Thank you for the information. My recommendation is:",
           ]
 
           const randomResponse = responses[Math.floor(Math.random() * responses.length)]
