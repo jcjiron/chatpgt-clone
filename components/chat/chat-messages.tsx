@@ -2,9 +2,14 @@
 
 import { useEffect, useRef } from "react"
 import { FaUserCircle, FaRobot, FaSpinner } from "react-icons/fa"
+import type { IconType } from "react-icons"
 import { useChatContext } from "@/context/chat-context"
 import type { Message } from "@/types/chat"
 import { TypingAnimation } from "./typing-animation"
+
+const UserIcon = FaUserCircle as IconType
+const RobotIcon = FaRobot as IconType
+const SpinnerIcon = FaSpinner as IconType
 
 export function ChatMessages() {
   const { state } = useChatContext()
@@ -28,10 +33,10 @@ export function ChatMessages() {
 
       {state.isLoading && (
         <div className="flex items-start space-x-3">
-          <FaRobot className="w-8 h-8 text-blue-600 flex-shrink-0 mt-1" />
+          <RobotIcon className="w-8 h-8 text-blue-600 flex-shrink-0 mt-1" />
           <div className="bg-slate-100 rounded-lg p-4 max-w-xs lg:max-w-md">
             <div className="flex items-center space-x-2">
-              <FaSpinner className="w-4 h-4 text-slate-600 animate-spin" />
+              <SpinnerIcon className="w-4 h-4 text-slate-600 animate-spin" />
               <span className="text-sm text-slate-600">Typing...</span>
             </div>
           </div>
@@ -53,9 +58,9 @@ function MessageBubble({ message }: MessageBubbleProps) {
   return (
     <div className={`flex items-start space-x-3 ${isUser ? "flex-row-reverse space-x-reverse" : ""}`}>
       {isUser ? (
-        <FaUserCircle className="w-8 h-8 text-slate-400 flex-shrink-0 mt-1" />
+        <UserIcon className="w-8 h-8 text-slate-400 flex-shrink-0 mt-1" />
       ) : (
-        <FaRobot className="w-8 h-8 text-blue-600 flex-shrink-0 mt-1" />
+        <RobotIcon className="w-8 h-8 text-blue-600 flex-shrink-0 mt-1" />
       )}
 
       <div

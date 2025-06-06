@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { FaProjectDiagram, FaChevronDown, FaChevronRight, FaPlus } from "react-icons/fa"
+import type { IconType } from "react-icons"
 import type { Project } from "@/types/chat"
 import { useChatContext } from "@/context/chat-context"
 import { useChatOperations } from "@/hooks/use-chat-operations"
@@ -15,6 +16,11 @@ export function ProjectList({ projects }: ProjectListProps) {
   const { dispatch } = useChatContext()
   const { createNewProject, createNewChat } = useChatOperations()
   const [expandedProjects, setExpandedProjects] = useState<Set<string>>(new Set())
+
+  const ProjectIcon = FaProjectDiagram as IconType
+  const ChevronDownIcon = FaChevronDown as IconType
+  const ChevronRightIcon = FaChevronRight as IconType
+  const PlusIcon = FaPlus as IconType
 
   const toggleProject = (projectId: string) => {
     const newExpanded = new Set(expandedProjects)
@@ -56,7 +62,7 @@ export function ProjectList({ projects }: ProjectListProps) {
                    hover:border-blue-400 hover:bg-blue-50 transition-colors
                    flex items-center justify-center space-x-2"
       >
-        <FaPlus className="w-4 h-4 text-slate-500" />
+        <PlusIcon className="w-4 h-4 text-slate-500" />
         <span className="text-sm text-slate-600">New Project</span>
       </button>
 
@@ -71,7 +77,7 @@ export function ProjectList({ projects }: ProjectListProps) {
                          flex items-center justify-between"
             >
               <div className="flex items-center space-x-3">
-                <FaProjectDiagram className="w-5 h-5 text-yellow-600" />
+                <ProjectIcon className="w-5 h-5 text-yellow-600" />
                 <div>
                   <h3 className="font-heading text-base font-medium text-slate-900">{project.name}</h3>
                   <p className="text-xs text-slate-500">{project.chats.length} chats</p>
@@ -86,12 +92,12 @@ export function ProjectList({ projects }: ProjectListProps) {
                   className="p-1 hover:bg-blue-100 rounded transition-colors"
                   aria-label="Add chat to project"
                 >
-                  <FaPlus className="w-3 h-3 text-blue-600" />
+                  <PlusIcon className="w-3 h-3 text-blue-600" />
                 </button>
                 {isExpanded ? (
-                  <FaChevronDown className="w-4 h-4 text-slate-400" />
+                  <ChevronDownIcon className="w-4 h-4 text-slate-400" />
                 ) : (
-                  <FaChevronRight className="w-4 h-4 text-slate-400" />
+                  <ChevronRightIcon className="w-4 h-4 text-slate-400" />
                 )}
               </div>
             </div>

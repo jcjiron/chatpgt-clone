@@ -1,8 +1,12 @@
 "use client"
 
 import { FaExternalLinkAlt, FaClock } from "react-icons/fa"
+import type { IconType } from "react-icons"
 import { useChatContext } from "@/context/chat-context"
 import { useChatOperations } from "@/hooks/use-chat-operations"
+
+const ExternalLinkIcon = FaExternalLinkAlt as IconType
+const ClockIcon = FaClock as IconType
 
 export function SidebarFooter() {
   const { state } = useChatContext()
@@ -29,7 +33,7 @@ export function SidebarFooter() {
                      flex items-center justify-center transition-colors"
           aria-label="Temporary chat"
         >
-          <FaClock className="w-4 h-4 text-yellow-600" />
+          <ClockIcon className="w-4 h-4 text-yellow-600" />
         </button>
         <button
           onClick={handleViewPlans}
@@ -37,7 +41,7 @@ export function SidebarFooter() {
                      flex items-center justify-center transition-colors"
           aria-label="View plans"
         >
-          <FaExternalLinkAlt className="w-4 h-4 text-blue-600" />
+          <ExternalLinkIcon className="w-4 h-4 text-blue-600" />
         </button>
       </div>
     )
@@ -50,7 +54,7 @@ export function SidebarFooter() {
         className="w-full p-3 bg-yellow-50 hover:bg-yellow-100 rounded-lg 
                    transition-colors flex items-center space-x-3"
       >
-        <FaClock className="w-4 h-4 text-yellow-600" />
+        <ClockIcon className="w-4 h-4 text-yellow-600" />
         <span className="text-sm text-yellow-700">Temporary Chat</span>
       </button>
 
@@ -60,7 +64,7 @@ export function SidebarFooter() {
                    transition-colors flex items-center justify-between"
       >
         <span className="text-sm text-blue-700">View Plans</span>
-        <FaExternalLinkAlt className="w-4 h-4 text-blue-600" />
+        <ExternalLinkIcon className="w-4 h-4 text-blue-600" />
       </button>
     </div>
   )
