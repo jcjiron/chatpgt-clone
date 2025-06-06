@@ -1,6 +1,6 @@
 "use client"
 
-import { FaBars, FaPlus } from "react-icons/fa"
+import { Menu, Plus } from "lucide-react"
 import { useChatContext } from "@/context/chat-context"
 import { useChatOperations } from "@/hooks/use-chat-operations"
 
@@ -28,7 +28,7 @@ export function SidebarHeader() {
           className="p-2 hover:bg-slate-100 rounded-lg transition-colors"
           aria-label="Toggle sidebar"
         >
-          <FaBars className="w-4 h-4 text-slate-600" />
+          <Menu className="w-4 h-4 text-slate-600" />
         </button>
 
         {!state.isSidebarCollapsed && (
@@ -39,7 +39,7 @@ export function SidebarHeader() {
               className="p-2 hover:bg-blue-100 rounded-lg transition-colors"
               aria-label="New chat"
             >
-              <FaPlus className="w-4 h-4 text-blue-600" />
+              <Plus className="w-4 h-4 text-blue-600" />
             </button>
           </>
         )}

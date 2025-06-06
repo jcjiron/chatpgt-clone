@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { FaChevronDown, FaRobot } from "react-icons/fa"
+import { ChevronDown, Bot } from "lucide-react"
 import { useChatContext } from "@/context/chat-context"
 
 export function ChatHeader() {
@@ -20,7 +20,7 @@ export function ChatHeader() {
     <div className="bg-white border-b border-slate-200 p-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-3">
-          <FaRobot className="w-6 h-6 text-blue-600" />
+          <Bot className="w-6 h-6 text-blue-600" />
           <div>
             <h1 className="font-heading text-xl font-semibold text-slate-900">{state.activeChat?.name || "Chat"}</h1>
           </div>
@@ -33,7 +33,7 @@ export function ChatHeader() {
                        hover:bg-slate-100 rounded-lg transition-colors"
           >
             <span className="text-sm text-slate-700">{state.selectedAgent.name}</span>
-            <FaChevronDown className="w-3 h-3 text-slate-500" />
+            <ChevronDown className="w-3 h-3 text-slate-500" />
           </button>
 
           {isDropdownOpen && (

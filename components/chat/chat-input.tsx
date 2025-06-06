@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { useState, useRef } from "react"
-import { FaPaperPlane, FaMicrophone, FaStop } from "react-icons/fa"
+import { Send, Mic, Square } from "lucide-react"
 import { useChatOperations } from "@/hooks/use-chat-operations"
 import { useChatContext } from "@/context/chat-context"
 
@@ -87,7 +87,7 @@ export function ChatInput() {
             `}
             aria-label={isRecording ? "Stop recording" : "Start recording"}
           >
-            {isRecording ? <FaStop className="w-5 h-5" /> : <FaMicrophone className="w-5 h-5" />}
+            {isRecording ? <Square className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
           </button>
 
           <button
@@ -97,7 +97,7 @@ export function ChatInput() {
                        text-white rounded-lg transition-colors flex-shrink-0"
             aria-label="Send message"
           >
-            <FaPaperPlane className="w-5 h-5" />
+            <Send className="w-5 h-5" />
           </button>
         </div>
       </form>

@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { FaUserCircle, FaTrash } from "react-icons/fa"
+import { User, Trash2 } from "lucide-react"
 import type { Chat } from "@/types/chat"
 import { useChatContext } from "@/context/chat-context"
 import { useChatOperations } from "@/hooks/use-chat-operations"
@@ -42,7 +42,7 @@ export function ChatList({ chats }: ChatListProps) {
           `}
         >
           <div className="flex items-start space-x-3">
-            <FaUserCircle className="w-8 h-8 text-slate-400 flex-shrink-0 mt-1" />
+            <User className="w-8 h-8 text-slate-400 flex-shrink-0 mt-1" />
             <div className="flex-1 min-w-0">
               <h3 className="font-heading text-base font-medium text-slate-900 truncate">{chat.name}</h3>
               {chat.lastMessage && <p className="text-sm text-slate-500 truncate mt-1">{chat.lastMessage}</p>}
@@ -53,7 +53,7 @@ export function ChatList({ chats }: ChatListProps) {
               className="opacity-0 group-hover:opacity-100 p-1 hover:bg-red-100 rounded transition-all"
               aria-label="Delete chat"
             >
-              <FaTrash className="w-3 h-3 text-red-500" />
+              <Trash2 className="w-3 h-3 text-red-500" />
             </button>
           </div>
         </div>

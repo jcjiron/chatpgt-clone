@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import { FaUserCircle, FaRobot, FaSpinner } from "react-icons/fa"
+import { User, Bot, Loader2 } from "lucide-react"
 import { useChatContext } from "@/context/chat-context"
 import type { Message } from "@/types/chat"
 import { TypingAnimation } from "./typing-animation"
@@ -28,10 +28,10 @@ export function ChatMessages() {
 
       {state.isLoading && (
         <div className="flex items-start space-x-3">
-          <FaRobot className="w-8 h-8 text-blue-600 flex-shrink-0 mt-1" />
+          <Bot className="w-8 h-8 text-blue-600 flex-shrink-0 mt-1" />
           <div className="bg-slate-100 rounded-lg p-4 max-w-xs lg:max-w-md">
             <div className="flex items-center space-x-2">
-              <FaSpinner className="w-4 h-4 text-slate-600 animate-spin" />
+              <Loader2 className="w-4 h-4 text-slate-600 animate-spin" />
               <span className="text-sm text-slate-600">Typing...</span>
             </div>
           </div>
@@ -53,9 +53,9 @@ function MessageBubble({ message }: MessageBubbleProps) {
   return (
     <div className={`flex items-start space-x-3 ${isUser ? "flex-row-reverse space-x-reverse" : ""}`}>
       {isUser ? (
-        <FaUserCircle className="w-8 h-8 text-slate-400 flex-shrink-0 mt-1" />
+        <User className="w-8 h-8 text-slate-400 flex-shrink-0 mt-1" />
       ) : (
-        <FaRobot className="w-8 h-8 text-blue-600 flex-shrink-0 mt-1" />
+        <Bot className="w-8 h-8 text-blue-600 flex-shrink-0 mt-1" />
       )}
 
       <div

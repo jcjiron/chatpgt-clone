@@ -1,6 +1,6 @@
 "use client"
 
-import { FaExternalLinkAlt } from "react-icons/fa"
+import { ExternalLink } from "lucide-react"
 import { useChatContext } from "@/context/chat-context"
 
 export function SidebarFooter() {
@@ -19,7 +19,7 @@ export function SidebarFooter() {
                      flex items-center justify-center transition-colors"
           aria-label="View plans"
         >
-          <FaExternalLinkAlt className="w-4 h-4 text-blue-600" />
+          <ExternalLink className="w-4 h-4 text-blue-600" />
         </button>
       </div>
     )
@@ -33,7 +33,7 @@ export function SidebarFooter() {
                    transition-colors flex items-center justify-between"
       >
         <span className="text-sm text-blue-700">View Plans</span>
-        <FaExternalLinkAlt className="w-4 h-4 text-blue-600" />
+        <ExternalLink className="w-4 h-4 text-blue-600" />
       </button>
     </div>
   )
