@@ -1,5 +1,5 @@
 import type { DatabaseDataSource } from "@/interfaces/database-datasource"
-import type { Chat, Project, Message } from "@/types/chat"
+import type { Chat, Message } from "@/types/chat"
 
 export class MySQLDataSource implements DatabaseDataSource {
   // TODO: Implement MySQL connection and queries
@@ -9,7 +9,7 @@ export class MySQLDataSource implements DatabaseDataSource {
     this.connectionString = connectionString
   }
 
-  async createChat(name: string, projectId?: string): Promise<Chat> {
+  async createChat(name: string): Promise<Chat> {
     // TODO: Implement MySQL INSERT for chat
     throw new Error("MySQLDataSource not implemented yet")
   }
@@ -31,31 +31,6 @@ export class MySQLDataSource implements DatabaseDataSource {
 
   async deleteChat(id: string): Promise<boolean> {
     // TODO: Implement MySQL DELETE for chat
-    throw new Error("MySQLDataSource not implemented yet")
-  }
-
-  async createProject(name: string, description?: string): Promise<Project> {
-    // TODO: Implement MySQL INSERT for project
-    throw new Error("MySQLDataSource not implemented yet")
-  }
-
-  async getProject(id: string): Promise<Project | null> {
-    // TODO: Implement MySQL SELECT for project
-    throw new Error("MySQLDataSource not implemented yet")
-  }
-
-  async getAllProjects(): Promise<Project[]> {
-    // TODO: Implement MySQL SELECT for all projects
-    throw new Error("MySQLDataSource not implemented yet")
-  }
-
-  async updateProject(id: string, updates: Partial<Project>): Promise<Project> {
-    // TODO: Implement MySQL UPDATE for project
-    throw new Error("MySQLDataSource not implemented yet")
-  }
-
-  async deleteProject(id: string): Promise<boolean> {
-    // TODO: Implement MySQL DELETE for project
     throw new Error("MySQLDataSource not implemented yet")
   }
 

@@ -13,15 +13,6 @@ export interface Chat {
   messages: Message[]
   lastMessage?: string
   lastActivity: Date
-  projectId?: string
-}
-
-export interface Project {
-  id: string
-  name: string
-  description?: string
-  chats: Chat[]
-  createdAt: Date
 }
 
 export interface Agent {
@@ -33,9 +24,7 @@ export interface Agent {
 
 export interface ChatState {
   chats: Chat[]
-  projects: Project[]
   activeChat: Chat | null
-  activeProject: Project | null
   agents: Agent[]
   selectedAgent: Agent
   isLoading: boolean

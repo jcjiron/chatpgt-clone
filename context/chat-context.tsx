@@ -2,18 +2,15 @@
 
 import type React from "react"
 import { createContext, useContext, useReducer, type ReactNode } from "react"
-import type { ChatState, Chat, Project, Agent } from "@/types/chat"
+import type { ChatState, Chat, Agent } from "@/types/chat"
 
 type ChatAction =
   | { type: "SET_CHATS"; payload: Chat[] }
-  | { type: "SET_PROJECTS"; payload: Project[] }
   | { type: "SET_ACTIVE_CHAT"; payload: Chat | null }
-  | { type: "SET_ACTIVE_PROJECT"; payload: Project | null }
   | { type: "SET_SELECTED_AGENT"; payload: Agent }
   | { type: "SET_LOADING"; payload: boolean }
   | { type: "TOGGLE_SIDEBAR" }
   | { type: "ADD_CHAT"; payload: Chat }
-  | { type: "ADD_PROJECT"; payload: Project }
   | { type: "UPDATE_CHAT"; payload: Chat }
   | { type: "DELETE_CHAT"; payload: string }
 
@@ -25,9 +22,7 @@ const defaultAgents: Agent[] = [
 
 const initialState: ChatState = {
   chats: [],
-  projects: [],
   activeChat: null,
-  activeProject: null,
   agents: defaultAgents,
   selectedAgent: defaultAgents[0],
   isLoading: false,
@@ -38,12 +33,8 @@ function chatReducer(state: ChatState, action: ChatAction): ChatState {
   switch (action.type) {
     case "SET_CHATS":
       return { ...state, chats: action.payload }
-    case "SET_PROJECTS":
-      return { ...state, projects: action.payload }
     case "SET_ACTIVE_CHAT":
       return { ...state, activeChat: action.payload }
-    case "SET_ACTIVE_PROJECT":
-      return { ...state, activeProject: action.payload }
     case "SET_SELECTED_AGENT":
       return { ...state, selectedAgent: action.payload }
     case "SET_LOADING":
@@ -52,8 +43,6 @@ function chatReducer(state: ChatState, action: ChatAction): ChatState {
       return { ...state, isSidebarCollapsed: !state.isSidebarCollapsed }
     case "ADD_CHAT":
       return { ...state, chats: [...state.chats, action.payload] }
-    case "ADD_PROJECT":
-      return { ...state, projects: [...state.projects, action.payload] }
     case "UPDATE_CHAT":
       return {
         ...state,

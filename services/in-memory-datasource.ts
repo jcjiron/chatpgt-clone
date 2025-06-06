@@ -1,34 +1,24 @@
 import type { DatabaseDataSource } from "@/interfaces/database-datasource"
-import type { Chat, Project, Message } from "@/types/chat"
+import type { Chat, Message } from "@/types/chat"
 
 export class InMemoryDataSource implements DatabaseDataSource {
   private chats: Map<string, Chat> = new Map()
-  private projects: Map<string, Project> = new Map()
   private messages: Map<string, Message[]> = new Map()
 
   private generateId(): string {
     return Math.random().toString(36).substr(2, 9)
   }
 
-  async createChat(name: string, projectId?: string): Promise<Chat> {
+  async createChat(name: string): Promise<Chat> {
     const chat: Chat = {
       id: this.generateId(),
       name,
       messages: [],
       lastActivity: new Date(),
-      projectId,
     }
 
     this.chats.set(chat.id, chat)
     this.messages.set(chat.id, [])
-
-    if (projectId) {
-      const project = this.projects.get(projectId)
-      if (project) {
-        project.chats.push(chat)
-        this.projects.set(projectId, project)
-      }
-    }
 
     return chat
   }
@@ -62,40 +52,6 @@ export class InMemoryDataSource implements DatabaseDataSource {
     const deleted = this.chats.delete(id)
     this.messages.delete(id)
     return deleted
-  }
-
-  async createProject(name: string, description?: string): Promise<Project> {
-    const project: Project = {
-      id: this.generateId(),
-      name,
-      description,
-      chats: [],
-      createdAt: new Date(),
-    }
-
-    this.projects.set(project.id, project)
-    return project
-  }
-
-  async getProject(id: string): Promise<Project | null> {
-    return this.projects.get(id) || null
-  }
-
-  async getAllProjects(): Promise<Project[]> {
-    return Array.from(this.projects.values())
-  }
-
-  async updateProject(id: string, updates: Partial<Project>): Promise<Project> {
-    const existingProject = this.projects.get(id)
-    if (!existingProject) throw new Error("Project not found")
-
-    const updatedProject = { ...existingProject, ...updates }
-    this.projects.set(id, updatedProject)
-    return updatedProject
-  }
-
-  async deleteProject(id: string): Promise<boolean> {
-    return this.projects.delete(id)
   }
 
   async addMessage(chatId: string, message: Omit<Message, "id">): Promise<Message> {

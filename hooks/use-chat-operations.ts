@@ -23,38 +23,15 @@ export function useChatOperations() {
     }
   }, [dispatch])
 
-  const loadProjects = useCallback(async () => {
-    try {
-      const projects = await dataSource.getAllProjects()
-      dispatch({ type: "SET_PROJECTS", payload: projects })
-    } catch (error) {
-      console.error("Error loading projects:", error)
-    }
-  }, [dispatch])
-
   const createNewChat = useCallback(
-    async (name: string, projectId?: string) => {
+    async (name: string) => {
       try {
-        const newChat = await dataSource.createChat(name, projectId)
+        const newChat = await dataSource.createChat(name)
         dispatch({ type: "ADD_CHAT", payload: newChat })
         dispatch({ type: "SET_ACTIVE_CHAT", payload: newChat })
         return newChat
       } catch (error) {
         console.error("Error creating chat:", error)
-        throw error
-      }
-    },
-    [dispatch],
-  )
-
-  const createNewProject = useCallback(
-    async (name: string, description?: string) => {
-      try {
-        const newProject = await dataSource.createProject(name, description)
-        dispatch({ type: "ADD_PROJECT", payload: newProject })
-        return newProject
-      } catch (error) {
-        console.error("Error creating project:", error)
         throw error
       }
     },
@@ -142,9 +119,7 @@ export function useChatOperations() {
 
   return {
     loadChats,
-    loadProjects,
     createNewChat,
-    createNewProject,
     sendMessage,
     selectChat,
     deleteChat,

@@ -4,16 +4,14 @@ import { useEffect } from "react"
 import { useChatContext } from "@/context/chat-context"
 import { useChatOperations } from "@/hooks/use-chat-operations"
 import { ChatList } from "./chat-list"
-import { ProjectList } from "./project-list"
 
 export function SidebarContent() {
   const { state } = useChatContext()
-  const { loadChats, loadProjects } = useChatOperations()
+  const { loadChats } = useChatOperations()
 
   useEffect(() => {
     loadChats()
-    loadProjects()
-  }, [loadChats, loadProjects])
+  }, [loadChats])
 
   if (state.isSidebarCollapsed) {
     return (
@@ -21,9 +19,6 @@ export function SidebarContent() {
         {/* Collapsed view - only icons */}
         <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
           <span className="text-xs text-blue-600">C</span>
-        </div>
-        <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
-          <span className="text-xs text-yellow-600">P</span>
         </div>
       </div>
     )
@@ -35,11 +30,6 @@ export function SidebarContent() {
         <div>
           <h2 className="font-heading text-lg font-semibold text-slate-700 mb-3">Conversations</h2>
           <ChatList chats={state.chats.filter((chat) => !chat.projectId)} />
-        </div>
-
-        <div>
-          <h2 className="font-heading text-lg font-semibold text-slate-700 mb-3">Projects</h2>
-          <ProjectList projects={state.projects} />
         </div>
       </div>
     </div>

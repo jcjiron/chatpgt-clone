@@ -27,7 +27,6 @@ export function ChatHeader() {
           <RobotIcon className="w-6 h-6 text-blue-600" />
           <div>
             <h1 className="font-heading text-xl font-semibold text-slate-900">{state.activeChat?.name || "Chat"}</h1>
-            {state.activeProject && <p className="text-sm text-slate-500">Project: {state.activeProject.name}</p>}
           </div>
         </div>
 
