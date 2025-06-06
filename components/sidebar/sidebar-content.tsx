@@ -30,7 +30,7 @@ export function SidebarContent() {
       <div className="p-4 space-y-6">
         <div>
           <h2 className="font-heading text-lg font-semibold text-slate-700 mb-3">Conversations</h2>
-          <ChatList chats={state.chats.filter((chat) => !chat.projectId)} />
+          <ChatList chats={state.chats} />
         </div>
       </div>
     </div>
