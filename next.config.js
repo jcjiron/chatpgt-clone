@@ -10,7 +10,7 @@ const nextConfig = {
     unoptimized: true,
   },
   experimental: {
-    optimizePackageImports: ["react-icons"],
+    optimizePackageImports: ["lucide-react"],
   },
   output: "standalone",
 }

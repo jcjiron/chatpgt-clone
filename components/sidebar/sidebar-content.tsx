@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect } from "react"
+import { MessageCircle } from "lucide-react"
 import { useChatContext } from "@/context/chat-context"
 import { useChatOperations } from "@/hooks/use-chat-operations"
 import { ChatList } from "./chat-list"
@@ -18,7 +19,7 @@ export function SidebarContent() {
       <div className="flex-1 p-2 space-y-2">
         {/* Collapsed view - only icons */}
         <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-          <span className="text-xs text-blue-600">C</span>
+          <MessageCircle className="w-5 h-5 text-blue-600" />
         </div>
       </div>
     )
