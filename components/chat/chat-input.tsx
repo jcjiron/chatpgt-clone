@@ -3,7 +3,6 @@
 import type React from "react"
 import { useState, useRef } from "react"
 import { FaPaperPlane, FaMicrophone, FaStop } from "react-icons/fa"
-import type { IconType } from "react-icons"
 import { useChatOperations } from "@/hooks/use-chat-operations"
 import { useChatContext } from "@/context/chat-context"
 
@@ -13,10 +12,6 @@ export function ChatInput() {
   const { sendMessage } = useChatOperations()
   const { state } = useChatContext()
   const textareaRef = useRef<HTMLTextAreaElement>(null)
-
-  const PaperPlaneIcon = FaPaperPlane as IconType
-  const MicrophoneIcon = FaMicrophone as IconType
-  const StopIcon = FaStop as IconType
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -92,7 +87,7 @@ export function ChatInput() {
             `}
             aria-label={isRecording ? "Stop recording" : "Start recording"}
           >
-            {isRecording ? <StopIcon className="w-5 h-5" /> : <MicrophoneIcon className="w-5 h-5" />}
+            {isRecording ? <FaStop className="w-5 h-5" /> : <FaMicrophone className="w-5 h-5" />}
           </button>
 
           <button
@@ -102,7 +97,7 @@ export function ChatInput() {
                        text-white rounded-lg transition-colors flex-shrink-0"
             aria-label="Send message"
           >
-            <PaperPlaneIcon className="w-5 h-5" />
+            <FaPaperPlane className="w-5 h-5" />
           </button>
         </div>
       </form>

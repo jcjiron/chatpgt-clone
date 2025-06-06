@@ -1,11 +1,7 @@
 "use client"
 
 import { FaComments, FaPlus } from "react-icons/fa"
-import type { IconType } from "react-icons"
 import { useChatOperations } from "@/hooks/use-chat-operations"
-
-const CommentsIcon = FaComments as IconType
-const PlusIcon = FaPlus as IconType
 
 export function EmptyState() {
   const { createNewChat } = useChatOperations()
@@ -21,7 +17,7 @@ export function EmptyState() {
   return (
     <div className="flex-1 flex items-center justify-center bg-slate-25">
       <div className="text-center max-w-md mx-auto p-8">
-        <CommentsIcon className="w-16 h-16 text-slate-400 mx-auto mb-6" />
+        <FaComments className="w-16 h-16 text-slate-400 mx-auto mb-6" />
 
         <h2 className="font-heading text-2xl font-semibold text-slate-900 mb-4">Welcome to Enterprise Chat</h2>
 
@@ -35,7 +31,7 @@ export function EmptyState() {
             className="w-full p-4 bg-blue-600 hover:bg-blue-700 text-white 
                        rounded-lg transition-colors flex items-center justify-center space-x-3"
           >
-            <PlusIcon className="w-5 h-5" />
+            <FaPlus className="w-5 h-5" />
             <span className="font-heading text-base font-medium">New Conversation</span>
           </button>
         </div>
